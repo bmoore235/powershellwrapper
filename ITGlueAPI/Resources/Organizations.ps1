@@ -23,7 +23,7 @@ function New-ITGlueOrganizations {
     }
 
     $data = @{}
-    $data = $rest_output 
+    $data = $rest_output
     return $data
 }
 
@@ -50,13 +50,13 @@ function Get-ITGlueOrganizations {
 
         [Parameter(ParameterSetName = 'index')]
         [Nullable[Int64]]$filter_my_glue_account_id = $null,
-        
+
         [Parameter(ParameterSetName = 'index')]
         [Nullable[Int64]]$filter_group_id = $null,
 
         [Parameter(ParameterSetName = 'index')]
         [Nullable[Int64]]$filter_exclude_id = $null,
-        
+
         [Parameter(ParameterSetName = 'index')]
         [String]$filter_exclude_name = '',
 
@@ -148,7 +148,7 @@ function Get-ITGlueOrganizations {
     try {
         $ITGlue_Headers.Add('x-api-key', (New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList 'N/A', $ITGlue_API_Key).GetNetworkCredential().Password)
         $rest_output = Invoke-RestMethod -method 'GET' -uri ($ITGlue_Base_URI + $resource_uri) -headers $ITGlue_Headers `
-            -body $body -ErrorAction Stop -ErrorVariable $web_error
+            -body $body -ContentType application/vnd.api+json -ErrorAction Stop -ErrorVariable $web_error
     } catch {
         Write-Error $_
     } finally {
@@ -156,7 +156,7 @@ function Get-ITGlueOrganizations {
     }
 
     $data = @{}
-    $data = $rest_output 
+    $data = $rest_output
     return $data
 }
 
@@ -168,7 +168,7 @@ function Set-ITGlueOrganizations {
 
         [Parameter(ParameterSetName = 'bulk_update')]
         [Nullable[Int64]]$filter_id = $null,
-        
+
         [Parameter(ParameterSetName = 'bulk_update')]
         [String]$filter_name = '',
 
@@ -261,7 +261,7 @@ function Set-ITGlueOrganizations {
     }
 
     $data = @{}
-    $data = $rest_output 
+    $data = $rest_output
     return $data
 }
 
@@ -270,7 +270,7 @@ function Remove-ITGlueOrganizations {
     Param (
         [Parameter(ParameterSetName = 'bulk_destroy')]
         [Nullable[Int64]]$filter_id = $null,
-        
+
         [Parameter(ParameterSetName = 'bulk_destroy')]
         [String]$filter_name = '',
 
@@ -362,6 +362,6 @@ function Remove-ITGlueOrganizations {
     }
 
     $data = @{}
-    $data = $rest_output 
+    $data = $rest_output
     return $data
 }
